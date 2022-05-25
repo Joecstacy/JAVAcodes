@@ -1,0 +1,60 @@
+Question: Can we overload the main method?
+Ans:      Yes.
+
+## explanation ##
+Main methods are being called by JVM automatically when we run the code.
+but the other overloaded main() methods will be run when we will invoke them by using the corresponded class name(as static methods can be invoke in three ways
+1. by using class name 2. by using corresponding object reference 3. by using object reference containing null value.)
+
+code:
+class hello{
+	
+}
+public class M2 {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("main called by JVM");
+	M2.main("hi");
+  M2.main(9);
+  M2.main([0]);
+		
+	}
+	public static void main(String s) {
+		System.out.println("main with the string arrrg");		
+	}
+	public static void main(int i) {
+		System.out.println("main with integer arg");
+	}
+}
+
+##############################################################################################
+Question2. What happen when we call the main method which is called by JVM inside the program again?
+Ans: It will give the error "Exception in thread "main" java.lang.StackOverflowError" . 
+Because calling that main method will create the infinite loop by calling itself again and again.
+This code will run till the Stack will overflow.
+
+CODE:
+public class M2 {
+	static{
+	 String str[]= {"w,e,r,t"};
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("main called by JVM");
+		//M2 m=new M2();
+		//String str[]= {"w,e,r,t"};
+		M2.main("hi",9);
+		M2.main(9);
+		M2.main(788);
+		M2.main(str);
+		
+	}
+	public static void main(String s,int i) {
+		System.out.println("main with the string arrrg");		
+	}
+	public static void main(int i) {
+		System.out.println("main with integer arg");
+	}
+
+}
+
